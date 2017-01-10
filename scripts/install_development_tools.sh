@@ -6,7 +6,7 @@
 
 export DEBIAN_FRONTEND='noninteractive'
 
-apt-get install -y build-essential libssl-dev neovim tmux libmysqlclient-dev libcurl4-openssl-dev 
+apt-get install -y build-essential libssl-dev neovim tmux libmysqlclient-dev libcurl4-openssl-dev nodejs
 
 # Install rvm/ruby
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
