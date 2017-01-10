@@ -1,0 +1,28 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker build --rm=false -t patelify/development-box:$CIRCLE_SHA1 .
+
+database:
+  override:
+    - echo "database disabled"
+
+test:
+  override:
+    - echo "test disabled"
+
+deployment:
+  develop:
+    branch: develop
+    commands:
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS -e $DOCKER_EMAIL
+      - docker push patelify/development-box:$CIRCLE_SHA1
+  master:
+    branch: master
+    commands:
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS -e $DOCKER_EMAIL
+      - docker tag patelify/development-box:$CIRCLE_SHA1 patelify/development-box:latest
+      - docker push patelify/development-box:latest
